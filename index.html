@@ -1,33 +1,46 @@
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebView</title>
+
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/topbar.css" />
 
     <!-- <link rel="stylesheet" href="assets/css/no-topbar.css"> -->
     <script defer src="assets/js/renderer.js"></script>
-    <meta charset="UTF-8" />
-    <title>Github</title>
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="script-src 'self' 'unsafe-inline';"
-    />
   </head>
   <body>
-    <!-- Topbar -->
-    <div id="controls">
-      <button id="home" title="Go Home">Home</button>
-      <button id="print_button">Print</button>
+    <!-- Title Bar -->
+    <div id="title-bar">
+      <div class="title-bar-left">
+        <div id="app-icon"></div>
+        <div id="app-title"></div>
+      </div>
+      <div class="title-bar-right">
+        <button type="button" id="back" title="Back" class="title-bar-button"></button>
+        <button type="button" id="refresh" title="Refresh Page" class="title-bar-button">󱍷</button>
+        <button type="button" id="forward" title="Forward" class="title-bar-button"></button>
+        <button type="button" id="home" title="Go Home" class="title-bar-button">󰟒</button>
+        <button type="button" id="extension-button" class="title-bar-button">󰔡</button>
+        <div class="window-controls">
+          <div id="minimize-button" class="window-control-button"></div>
+          <div id="maximize-button" class="window-control-button"></div>
+          <div id="close-button" class="window-control-button"></div>
+        </div>
+      </div>
     </div>
-    <!-- End topbar -->
+    <!-- End Title Bar -->
 
-    <!-- Webview -->
-
+    <!-- WebContentsView Container -->
+    <div id="webcontents-container">
     <webview
       autosize="on"
       src="https://www.github.com"
       id="webview"
       data-home="https://github.com"
     ></webview>
+    </div>
 
     <!-- HTML -->
     <!--

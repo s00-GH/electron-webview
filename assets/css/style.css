@@ -3,4 +3,26 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #222;
+  color: #ddd;
+  font-family: "Maple Mono NF CN";
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+#webcontents-container {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: calc(100vh - 28px);
+}
+
+webview {
+  width: 100%;
+  height: 100%;
+  border: none;
 }

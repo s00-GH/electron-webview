@@ -1,5 +1,7 @@
 // Electron
-const { app, Menu } = require("electron");
+const { app, Menu, ipcMain } = require("electron");
+
+let mainWindow;
 
 app.whenReady().then(() => {
   // Main window
@@ -11,7 +13,7 @@ app.whenReady().then(() => {
   //mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   // Option 2: Load directly an URL if you don't need interface customization
-  //mainWindow.loadURL("https://github.com");
+  //mainWindow.loadURL("https://example.com");
 
   // Option 3: Uses BrowserView to load an URL
   //const view = require("./src/view");
@@ -20,14 +22,36 @@ app.whenReady().then(() => {
   // Display Dev Tools
   //mainWindow.openDevTools();
 
-  // Menu (for standard keyboard shortcuts)
-  const menu = require("./src/menu");
-  const template = menu.createTemplate(app.name);
-  const builtMenu = Menu.buildFromTemplate(template);
-  Menu.setApplicationMenu(builtMenu);
+  // Hide the native menu bar completely
+  Menu.setApplicationMenu(null);
 
-  // Print function (if enabled)
-  require("./src/print");
+  // IPC handlers for window controls
+  ipcMain.on('window-minimize', () => {
+    if (mainWindow) {
+      mainWindow.minimize();
+    }
+  });
+
+  ipcMain.on('window-maximize', () => {
+    if (mainWindow) {
+      if (mainWindow.isMaximized()) {
+        mainWindow.unmaximize();
+      } else {
+        mainWindow.maximize();
+      }
+    }
+  });
+
+  ipcMain.on('window-close', () => {
+    if (mainWindow) {
+      mainWindow.close();
+    }
+  });
+
+  ipcMain.on('show-dropdown', (event, data) => {
+    // For now, just log the dropdown request
+    console.log('Show dropdown at:', data);
+  });
 });
 
 // Quit when all windows are closed.

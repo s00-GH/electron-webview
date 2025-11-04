@@ -7,11 +7,11 @@ exports.createBrowserWindow = () => {
     width: 1024,
     height: 768,
     icon: path.join(__dirname, "assets/icons/png/64x64.png"),
-    //titleBarStyle: 'hidden',
-    //frame: false,
-    backgroundColor: "#fff",
+    titleBarStyle: "hidden",
+    frame: false,
+    backgroundColor: "#22222250",
     webPreferences: {
-      nativeWindowOpen: true,
+      nativeWindowOpen: false,
       devTools: true, // false if you want to remove dev tools access for the user
       contextIsolation: true,
       webviewTag: true, // https://www.electronjs.org/docs/api/webview-tag,
